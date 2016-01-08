@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <fieldset name="general"
+		label="COM_DDCPSS_STD_OPTIONS"
+		description="COM_DDCPSS_STD_OPTIONS_DESC">
+		<field name="required_account" type="radio"
+			default="0"
+			class="btn-group"
+			label="COM_DDCPSS_REQUIRED_ACCOUNT"
+			description="COM_DDCPSS_REQUIRED_ACCOUNT_DESC">
+
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field name="url_terms"
+		    type="url"
+			default=""
+			label="COM_DDCPSS_URL_TERMS"
+			description="COM_DDCPSS_URL_TERMS_DESC"
+		/>
+		<field name="dbs_info"
+		    type="editor"
+			cols="5"
+			rows="5"
+			class="span6"
+			label="COM_DDC_DBS_INFO"
+			description="COM_DDC_DBS_INFO">
+		</field>
+	</fieldset>
+	<fieldset name="application_info"
+		label="COM_DDC_APPLICATION_OPTIONS"
+		description="COM_DDC_APPLICATION_OPTIONS_DESC">
+		<field name="pop_up_alert_class"
+			label="COM_DDC_APPLICATION_INFO_CLASS_LABEL"
+			description="COM_DDC_APPLICATION_INFO_CLASS_DESC"
+			type="text" />
+		<field name="pop_up_alert"
+		    type="editor"
+			cols="5"
+			rows="5"
+			class="span6"
+			label="COM_DDC_POP_UP_ALERT"
+			description="COM_DDC_POP_UP_ALERT_DESC"
+			filter="safehtml">
+		</field>
+		<field name="post_pop_up_alert"
+		    type="editor"
+			cols="5"
+			rows="5"
+			class="span6"
+			label="COM_DDC_POST_POP_UP_ALERT"
+			description="COM_DDC_POST_POP_UP_ALERT_DESC"
+			filter="safehtml">
+		</field>
+		<field name="reference_information"
+			type="editor"
+			cols="5"
+			rows="5"
+			class="span6"
+			label="COM_DDC_REFERENCE_INFORMATION"
+			description="COM_DDC_REFERENCE_INFORMATION_DESC"
+			filter="safehtml">
+		</field>
+    </fieldset>
+	
+	<fieldset name="permissions"
+		description="JCONFIG_PERMISSIONS_DESC"
+		label="JCONFIG_PERMISSIONS_LABEL"
+	>
+
+		<field name="rules" type="rules"
+			component="com_ddcpss"
+			filter="rules"
+			validate="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			section="component" />
+	</fieldset>
+</config>
