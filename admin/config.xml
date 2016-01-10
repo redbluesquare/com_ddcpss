@@ -52,6 +52,12 @@
 			description="COM_DDC_POST_POP_UP_ALERT_DESC"
 			filter="safehtml">
 		</field>
+		<field name="photo_criteria"
+			type="editor"
+			label="COM_DDC_PHOTO_CRITERIA"
+			description="COM_DDC_PHOTO_CRITERIA_DESC"
+			filter="safehtml">
+		</field>
 		<field name="reference_information"
 			type="editor"
 			cols="5"
