@@ -501,7 +501,7 @@ jQuery(document).ready(function(){
   				<progress id="progresscvBar" class="progress active" value="0" max="100" style="width:300px;"></progress>
 				<h3 id="statuscv"></h3>
 			</form>
-				
+		<a href="<?php echo JPATH_ROOT."/media/ddcpss/cv_lib/".$this->item->cv ?>" target="_BLANK"><?php echo JText::_('COM_DDC_CURRENT_CV'); ?></a>		
   		</div>
   		<div class="modal-footer">
   			<button class="btn" onclick=""  data-dismiss="modal" aria-hidden="true"><?php echo JText::_('COM_DDC_CANCEL'); ?></button>
