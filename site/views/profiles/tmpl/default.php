@@ -489,7 +489,7 @@ jQuery(document).ready(function(){
 </div>
 
 <!-- Update CV -->
-<div class="modal fade" style="max-width:400px;" id="uploadCVModal" tabindex="-1" role="dialog" aria-labelledby="UploadCVModalLabel" aria-hidden="true">
+<div class="modal fade" id="uploadCVModal" tabindex="-1" role="dialog" aria-labelledby="UploadCVModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="padding:10px;">
        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
@@ -584,7 +584,7 @@ jQuery(document).ready(function(){
 </div>
 
 		<!-- Modal for User Profile -->
-<div class="modal fade" id="userProfleModal" tabindex="-1" role="dialog" aria-labelledby="membershipModalLabel" aria-hidden="true">
+<div class="modal fade" id="userProfileModal" tabindex="-1" role="dialog" aria-labelledby="membershipModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="padding:10px;">
        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
