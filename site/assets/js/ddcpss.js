@@ -5,10 +5,20 @@ function saveUserExp(){
 	});
 
 	jQuery.ajax({
-		url:'index.php?option=com_ddcpss&controller=add&format=raw&tmpl=component',
+		url:'?option=com_ddcpss&controller=add&format=raw&tmpl=component',
 		type:'POST',
 		data:userexpInfo,
 		dataType:'JSON',
+		beforeSend:function(){
+			console.log("...saving...");
+			jQuery("#modal_update").css("display","inline");
+			jQuery("#modal_update > #status").html("...saving...");
+		},
+		complete:function(){
+			jQuery("#modal_update").css("display","none");
+			jQuery("#modal_update > #status").html("...page reloading...");
+			jQuery("#modal_update").css("display","inline");
+		},
 		success:function(data)
 		{
 			if ( data.success == true ){
@@ -43,13 +53,12 @@ function updateUserExperience(userexp, tableval){
 
 
 	jQuery.ajax({
-		url:'index.php?option=com_ddcpss&controller=get&format=raw&tmpl=component&table='+tableval+'&user_experience_id='+userexp,
+		url:'?option=com_ddcpss&controller=get&format=raw&tmpl=component&table='+tableval+'&user_experience_id='+userexp,
 		type:'get',
 		dataType:'JSON',
 		success:function(data)
 		{
 			if ( data.success ){
-				console.log(data.html);
 				jQuery("#jform_company_name").val(data.html.company_name);
 				jQuery("#jform_job_title").val(data.html.job_title);
 				jQuery("#jform_location").val(data.html.location);
@@ -83,9 +92,18 @@ function delUserExperience() {
     	});
 
     	jQuery.ajax({
-    		url:'index.php?option=com_ddcpss&controller=delete&format=raw&tmpl=component',
+    		url:"?option=com_ddcpss&controller=delete&format=raw",
     		type:'POST',
     		data:userexpInfo,
+    		beforeSend:function(){
+    			jQuery("#modal_update").css("display","inline");
+    			jQuery("#modal_update > #status").html("...deleting...");
+    		},
+    		complete:function(){
+    			jQuery("#modal_update").css("display","none");
+    			jQuery("#modal_update > #status").html("...page reloading...");
+    			jQuery("#modal_update").css("display","inline");
+    		},
     		dataType:'JSON',
     		success:function(data)
     		{
@@ -96,7 +114,11 @@ function delUserExperience() {
     		    	      	location.reload();
     		    	      }, 0800);
     			}else{
-
+    				setTimeout(
+    		    	    	function() 
+    		    	      {
+    		    	      	location.reload();
+    		    	      }, 0800);
     			}
     		}
     	});
@@ -117,6 +139,15 @@ function saveUserEdu(){
 		url:'index.php?option=com_ddcpss&controller=add&format=raw&tmpl=component',
 		type:'POST',
 		data:usereduInfo,
+		beforeSend:function(){
+			jQuery("#modal_update").css("display","inline");
+			jQuery("#modal_update > #status").html("...saving...");
+		},
+		complete:function(){
+			jQuery("#modal_update").css("display","none");
+			jQuery("#modal_update > #status").html("...page reloading...");
+			jQuery("#modal_update").css("display","inline");
+		},
 		dataType:'JSON',
 		success:function(data)
 		{
@@ -184,6 +215,15 @@ function delUserEducation() {
     		url:'index.php?option=com_ddcpss&controller=delete&format=raw&tmpl=component',
     		type:'POST',
     		data:usereduInfo,
+    		beforeSend:function(){
+    			jQuery("#modal_update").css("display","inline");
+    			jQuery("#modal_update > #status").html("...deleting...");
+    		},
+    		complete:function(){
+    			jQuery("#modal_update").css("display","none");
+    			jQuery("#modal_update > #status").html("...page reloading...");
+    			jQuery("#modal_update").css("display","inline");
+    		},
     		dataType:'JSON',
     		success:function(data)
     		{
@@ -215,6 +255,15 @@ function saveUserCRA(){
 		type:'POST',
 		data:usercraInfo,
 		dataType:'JSON',
+		beforeSend:function(){
+			jQuery("#modal_update").css("display","inline");
+			jQuery("#modal_update > #status").html("...saving...");
+		},
+		complete:function(){
+			jQuery("#modal_update").css("display","none");
+			jQuery("#modal_update > #status").html("...page reloading...");
+			jQuery("#modal_update").css("display","inline");
+		},
 		success:function(data)
 		{
 			if ( data.success == true ){
@@ -258,6 +307,15 @@ function saveReference(){
 		type:'POST',
 		data:referenceInfo,
 		dataType:'JSON',
+		beforeSend:function(){
+			jQuery("#modal_update").css("display","inline");
+			jQuery("#modal_update > #status").html("...saving...");
+		},
+		complete:function(){
+			jQuery("#modal_update").css("display","none");
+			jQuery("#modal_update > #status").html("...page reloading...");
+			jQuery("#modal_update").css("display","inline");
+		},
 		success:function(data)
 		{
 			if ( data.success == true ){
@@ -315,6 +373,15 @@ function delReference() {
     		type:'POST',
     		data:referenceInfo,
     		dataType:'JSON',
+    		beforeSend:function(){
+    			jQuery("#modal_update").css("display","inline");
+    			jQuery("#modal_update > #status").html("...deleting...");
+    		},
+    		complete:function(){
+    			jQuery("#modal_update").css("display","none");
+    			jQuery("#modal_update > #status").html("...page reloading...");
+    			jQuery("#modal_update").css("display","inline");
+    		},
     		success:function(data)
     		{
     			if ( data.success == true ){
@@ -363,12 +430,18 @@ function saveUserMembership(){
 		type:'POST',
 		data:membershipInfo,
 		dataType:'JSON',
+		beforeSend:function(){
+			jQuery("#modal_update").css("display","inline");
+			jQuery("#modal_update > #status").html("...saving...");
+		},
+		complete:function(){
+			jQuery("#modal_update").css("display","none");
+			jQuery("#modal_update > #status").html("...page reloading...");
+			jQuery("#modal_update").css("display","inline");
+		},
 		success:function(data)
 		{
 			if ( data.success == true ){
-					//jQuery("#user_membership").append(data.html);
-					//jQuery("#membershipModal").modal('hide');
-					//jQuery(".norecord_ref").hide();
 				setTimeout(
 				    	function() 
 				      {
@@ -380,14 +453,6 @@ function saveUserMembership(){
 			}
 		}
 	});
-	if ( data.success == true )
-	{
-		setTimeout(
-	    	function() 
-	      {
-	      	location.reload();
-	      }, 0500);
-	}
 	
 }
 function disableAlert(){
@@ -462,6 +527,15 @@ function delUserMembership() {
     		type:'POST',
     		data:userMembershipInfo,
     		dataType:'JSON',
+    		beforeSend:function(){
+    			jQuery("#modal_update").css("display","inline");
+    			jQuery("#modal_update > #status").html("...deleting...");
+    		},
+    		complete:function(){
+    			jQuery("#modal_update").css("display","none");
+    			jQuery("#modal_update > #status").html("...page reloading...");
+    			jQuery("#modal_update").css("display","inline");
+    		},
     		success:function(data)
     		{
     			if ( data.success == true ){
@@ -539,6 +613,15 @@ function saveUserProfile(){
 		type:'POST',
 		data:userProfileInfo,
 		dataType:'JSON',
+		beforeSend:function(){
+			jQuery("#modal_update").css("display","inline");
+			jQuery("#modal_update > #status").html("...saving...");
+		},
+		complete:function(){
+			jQuery("#modal_update").css("display","none");
+			jQuery("#modal_update > #status").html("...page reloading...");
+			jQuery("#modal_update").css("display","inline");
+		},
 		success:function(data)
 		{
 			if ( data.success == true ){

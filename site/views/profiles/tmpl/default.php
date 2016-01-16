@@ -467,12 +467,17 @@ jQuery(document).ready(function(){
 </div>
 
 <!-- Update Photo -->
-<div class="modal fade" style="max-width:400px;" id="uploadPhotoModal" tabindex="-1" role="dialog" aria-labelledby="UploadPhotoModalLabel" aria-hidden="true">
+<div class="modal fade" id="uploadPhotoModal" tabindex="-1" role="dialog" aria-labelledby="UploadPhotoModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="padding:10px;">
        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
       	<h3><?php echo JText::_('COM_DDC_UPDATE_PHOTO'); ?></h3>
       	<div class="modal-body">
+      		<div class="alert alert-success" style="overflow-y:scroll;height:200px;">
+      			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+      			<?php echo $params->get('photo_criteria'); ?>
+      			<button type="button" class="btn pull-right" data-dismiss="alert"><?php echo JText::_('COM_DDC_HIDE'); ?></button>
+      		</div>
 			<form id="upload_form" enctype="multipart/form-data" method="post">
   				<input type="file" id="upload_photo" name="upload_photo" accept="image/*" />				
   				<input type="hidden" id="jform_table" name="jform[table]" value="uploadphoto" />
@@ -501,7 +506,7 @@ jQuery(document).ready(function(){
   				<progress id="progresscvBar" class="progress active" value="0" max="100" style="width:300px;"></progress>
 				<h3 id="statuscv"></h3>
 			</form>
-		<a href="<?php echo JPATH_ROOT."/media/ddcpss/cv_lib/".$this->item->cv ?>" target="_BLANK"><?php echo JText::_('COM_DDC_CURRENT_CV'); ?></a>		
+		<a href="<?php echo JRoute::_("media/ddcpss/cv_lib/".$this->profile->cv) ?>" target="_BLANK"><?php echo JText::_('COM_DDC_CURRENT_CV'); ?></a>		
   		</div>
   		<div class="modal-footer">
   			<button class="btn" onclick=""  data-dismiss="modal" aria-hidden="true"><?php echo JText::_('COM_DDC_CANCEL'); ?></button>
@@ -664,4 +669,7 @@ jQuery(document).ready(function(){
   		</div>
 	</div>
   </div>
+</div>
+<div id="modal_update">
+	<div id="status"></div>
 </div>

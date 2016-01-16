@@ -3,6 +3,9 @@
 [class*="showedbtns"] {padding:10px;box-shadow:0px 0px 5px #c9c9c9;border-radius:5px;margin-bottom:10px;}
 .modal { display:none; }
 .dbs_cert_validity{color:#8A0808; text-align: center;font-size:0.8em;}
+#modal_update{position:fixed;top:180px;margin-left:220px;margin-right:0;display:none;z-index:2000;width:500px;}
+#modal_update>#status{position:inherit;width:inherit;text-align:center;border-radius:15px;
+	font-size:1.2em;font-weight:bold;padding:60px 0px 60px 0px;background:rgba(200,200,200,0.3);}
 input .hidden{display:none;}
 .profle_image{margin-top:10px;max-width:90%;}
 .tooltip {

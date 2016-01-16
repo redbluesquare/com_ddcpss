@@ -27,7 +27,7 @@ foreach ($fieldsets as $group => $fieldset): // Iterate through the form fieldse
 	<?php if (isset($fieldset->label)): ?>
 	
 	<h3 style="color:grey;">
-		<button class="btn pull-right btn-success" style="display:none;" data-toggle="modal" data-target="#userProfleModal" onclick="getUserProfile()"><i class="icon-pencil"></i></button>
+		<button class="btn pull-right btn-success" style="display:none;" data-toggle="modal" data-target="#userProfileModal" onclick="getUserProfile()"><i class="icon-pencil"></i></button>
 		<?php echo JText::_($fieldset->label); ?>
 	</h3>
 	<hr/>
