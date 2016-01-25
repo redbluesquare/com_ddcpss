@@ -255,6 +255,37 @@ function getMe()
   	return false;
   }
   
+  /**
+   * 
+   */
+  public function uploadFile($data)
+  {
+  	$user = JFactory::getUser()->id;
+  	if($user!=0)
+  	{
+  		$date = date("Y-m-d H:i:s");
+  		$db = JFactory::getDbo();
+  		$query = $db->getQuery(TRUE);
+  		// Insert columns.
+  		$columns = array('user_id', 'linked_table', 'linked_table_id', 'catid', 'filepath', 'filename', 'alias', 'state', 'created', 'modified');
+  
+  		// Insert values.
+  		$values = array($user, $db->quote($data['linked_table']), $db->quote($data['linked_table_id']), $db->quote($data['category']), 
+  				$db->quote($data['filepath']), $db->quote($data['filename']), $db->quote($data['alias']), 1, $date, $date);
+  
+  		// Prepare the insert query.
+  		$query
+  		->insert($db->quoteName('#__ddc_user_images'))
+  		->columns($db->quoteName($columns))
+  		->values(implode(',', $values));
+  		$db->setQuery($query);
+  		$result = $db->execute();
+  
+  		return true;
+  	}
+  	return false;
+  }
+  
   // Function for resizing jpg, gif, or png image files
   public function profile_img_resize($target, $newcopy, $w, $h, $ext) {
   	list($w_orig, $h_orig) = getimagesize($target);

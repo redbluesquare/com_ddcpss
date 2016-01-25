@@ -29,6 +29,8 @@ JHTML::_('behavior.calendar');
         </tfoot>
         <tbody>
         <?php foreach($this->items as $i => $item): ?>
+        	<?php if($item->end_year!=0){$end_date = JHtml::date($item->end_year."-".$item->end_month."-01","M-Y");}else{$end_date=JText::_('COM_DDC_PRESENT');}?>
+        	<?php if($item->start_year!=0){$start_date = JHtml::date($item->start_year."-".$item->start_month."-01","M-Y");}else{$start_date=null;}?>
    			<tr>
    				<td style="text-align:center;">
    					<?php echo $item->ddc_user_experience_id; ?>
@@ -43,7 +45,7 @@ JHTML::_('behavior.calendar');
                      <?php echo $item->location; ?>
                 </td>
            		<td style="text-align:left;">
-           			<?php echo JHtml::date("01-".$item->start_month."-".$item->start_year,"M-Y")." ".JText::_('COM_DDC_TO')." ".JHtml::date("01-".$item->end_month."-".$item->end_year,"M-Y"); ?>
+           			<?php echo $start_date." ".JText::_('COM_DDC_TO')." ".$end_date; ?>
            		</td>
                 <td style="text-align:left;">
                 	<?php echo $item->current_employer; ?>

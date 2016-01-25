@@ -1,9 +1,9 @@
 <?php
 /**
  * @package     Joomla.Site
- * @subpackage  com_users
+ * @subpackage  com_ddcpss
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2015 DiGi Dev Cloud, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -80,11 +80,10 @@ else
 <?php endif; ?>
 <div class="row-fluid">
 	<div class="span2">
-		<div class="profile-image" style="height:160px;"  data-toggle="modal" data-target="#uploadPhotoModal">
+		<div class="profile-image" style="height:140px;"  data-toggle="modal" data-target="#uploadPhotoModal">
 		<img id="myprofilepic" alt="" src="<?php echo $profileimg; ?>" class="img-rounded img-polaroid profle_image" />
 		<div class="caption-imgupload" id="img-upload"><span><?php echo JText::_('COM_DDC_CHANGE_IMAGE'); ?></span></div>
 		</div>
-		<button id="mycv" class="btn btn-success" data-toggle="modal" data-target="#uploadCVModal"><i class="icon-file icon-white"></i><?php echo JText::_('COM_DDC_UPDATE_CV'); ?></button>
 	</div>
 	<div class="span7">
 		<?php 
@@ -101,6 +100,10 @@ else
   			
 		</div>
 		
+	</div>
+	<div class="clearfix"></div>
+	<div class="span12" style="margin-bottom:5px;">
+		<button id="mycv" class="btn btn-success pull-left" data-toggle="modal" data-target="#uploadCVModal"><i class="icon-file icon-white"></i><?php echo JText::_('COM_DDC_UPDATE_CV'); ?></button>
 	</div>
 	<div class="clearfix"></div>
 	<div class="span12 showbtns" style="margin-top:3px;">
@@ -339,10 +342,13 @@ jQuery(document).ready(function(){
 					
 				</select>	
 				</div>
+				
 				<input class="span12" placeholder="<?php echo JText::_('COM_DDC_DEGREE'); ?>" type="text" name="jform[degree]" id="jform_degree" />
 				<input class="span12" placeholder="<?php echo JText::_('COM_DDC_FOS'); ?>" type="text" name="jform[field_of_study]" id="jform_field_of_study" />
 				<input class="span12" placeholder="<?php echo JText::_('COM_DDC_GRADE'); ?>" type="text" name="jform[grade]" id="jform_grade" />
 				<textarea rows="5" class="span12" name="jform[education_description]" id="jform_education_description" placeholder="<?php echo JText::_('COM_DDC_EDUCATION_DESCRIPTION'); ?>"></textarea>
+				<progress id="progresscvBar" class="progress active" value="0" max="100" style="width:300px;"></progress>
+				<h3 id="statuscv"></h3>
 				<input type="hidden" name="jform[table]" value="usereducation" />
 				<input type="hidden" name="jform[ddc_user_education_id]" id="jform_ddc_user_education_id" value="" />
 			</form>

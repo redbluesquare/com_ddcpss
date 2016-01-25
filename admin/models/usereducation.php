@@ -77,6 +77,10 @@ class DdcpssModelsUsereducation extends DdcpssModelsDefault
   	{
   		//$query->where('uedu.state = "'.(int)$this->_published.'"');
   	}
+  	if($this->_user_id!=null)
+  	{
+  		$query->where('uedu.user_id = "'.(int)$this->_user_id.'"');
+  	}
   	if($this->_usereducation_id!=null)
   	{
   		$query->where('uedu.ddc_user_education_id = "'.(int)$this->_usereducation_id.'"');

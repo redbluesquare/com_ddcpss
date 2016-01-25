@@ -46,6 +46,9 @@ class DdcpssViewsProfilesHtml extends JViewHtml
     		$this->fm = $profModel->getForm();
     		$this->form = $modelReference->getForm();
     	break;
+    	case "documents":
+    		$this->profile = $profileModel->getItem();
+    	break;
     }
  
     //display

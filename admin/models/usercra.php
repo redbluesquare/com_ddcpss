@@ -78,6 +78,14 @@ class DdcpssModelsUsercra extends DdcpssModelsDefault
   protected function _buildWhere(&$query)
   {
 
+  	if($this->_published!=null)
+  	{
+  		$query->where('ucra.state = "'.(int)$this->_published.'"');
+  	}
+  	if($this->_user_id!=null)
+  	{
+  		$query->where('ucra.user_id = "'.(int)$this->_user_id.'"');
+  	}
   	if($this->_usercra_id!=null)
   	{
   		$query->where('ucra.ddc_user_cra_id = "'.(int)$this->_usercra_id.'"');

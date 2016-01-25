@@ -73,6 +73,14 @@ class DdcpssModelsUserexperience extends DdcpssModelsDefault
   protected function _buildWhere(&$query)
   {
 
+  	if($this->_published!=null)
+  	{
+  		//$query->where('uexp.state = "'.(int)$this->_published.'"');
+  	}
+  	if($this->_user_id!=null)
+  	{
+  		$query->where('uexp.user_id = "'.(int)$this->_user_id.'"');
+  	}
   	if($this->_userexperience_id!=null)
   	{
   		$query->where('uexp.ddc_user_experience_id = "'.(int)$this->_userexperience_id.'"');

@@ -64,7 +64,7 @@ class DdcpssControllersDelete extends JControllerBase {
 				$return['success'] = true;
 				$return['msg'] = JText::_('COM_DDC_SAVE_SUCCESS');
 				if($id==null){
-					$return['html'] = DdcpssHelpersView::getHtml($view, $layout, $item, $row);
+					$return['html'] = null;
 				}
 				else{
 					$return['html'] = null;
@@ -91,7 +91,7 @@ class DdcpssControllersDelete extends JControllerBase {
 				$return['success'] = true;
 				$return['msg'] = JText::_('COM_DDC_SAVE_SUCCESS');
 				if($id==null){
-					$return['html'] = DdcpssHelpersView::getHtml($view, $layout, $item, $row);
+					$return['html'] = null;
 				}
 				else{
 					$return['html'] = null;
@@ -118,7 +118,7 @@ class DdcpssControllersDelete extends JControllerBase {
 				$return['success'] = true;
 				$return['msg'] = JText::_('COM_DDC_SAVE_SUCCESS');
 				if($id!=null){
-					$return['html'] = DdcpssHelpersView::getHtml($view, $layout, $item, $row);
+					$return['html'] = null;
 				}
 				else{
 					$return['html'] = null;

@@ -5,7 +5,7 @@ function saveUserExp(){
 	});
 
 	jQuery.ajax({
-		url:'?option=com_ddcpss&controller=add&format=raw&tmpl=component',
+		url:'index.php?option=com_ddcpss&controller=add&format=raw&tmpl=component',
 		type:'POST',
 		data:userexpInfo,
 		dataType:'JSON',
@@ -15,9 +15,7 @@ function saveUserExp(){
 			jQuery("#modal_update > #status").html("...saving...");
 		},
 		complete:function(){
-			jQuery("#modal_update").css("display","none");
-			jQuery("#modal_update > #status").html("...page reloading...");
-			jQuery("#modal_update").css("display","inline");
+
 		},
 		success:function(data)
 		{
@@ -53,7 +51,7 @@ function updateUserExperience(userexp, tableval){
 
 
 	jQuery.ajax({
-		url:'?option=com_ddcpss&controller=get&format=raw&tmpl=component&table='+tableval+'&user_experience_id='+userexp,
+		url:'index.php?option=com_ddcpss&controller=get&format=raw&tmpl=component&table='+tableval+'&user_experience_id='+userexp,
 		type:'get',
 		dataType:'JSON',
 		success:function(data)
@@ -92,7 +90,7 @@ function delUserExperience() {
     	});
 
     	jQuery.ajax({
-    		url:"?option=com_ddcpss&controller=delete&format=raw",
+    		url:'index.php?option=com_ddcpss&controller=delete&format=raw&tmpl=component',
     		type:'POST',
     		data:userexpInfo,
     		beforeSend:function(){
@@ -100,9 +98,7 @@ function delUserExperience() {
     			jQuery("#modal_update > #status").html("...deleting...");
     		},
     		complete:function(){
-    			jQuery("#modal_update").css("display","none");
-    			jQuery("#modal_update > #status").html("...page reloading...");
-    			jQuery("#modal_update").css("display","inline");
+
     		},
     		dataType:'JSON',
     		success:function(data)
@@ -114,11 +110,7 @@ function delUserExperience() {
     		    	      	location.reload();
     		    	      }, 0800);
     			}else{
-    				setTimeout(
-    		    	    	function() 
-    		    	      {
-    		    	      	location.reload();
-    		    	      }, 0800);
+    				
     			}
     		}
     	});
@@ -144,9 +136,7 @@ function saveUserEdu(){
 			jQuery("#modal_update > #status").html("...saving...");
 		},
 		complete:function(){
-			jQuery("#modal_update").css("display","none");
-			jQuery("#modal_update > #status").html("...page reloading...");
-			jQuery("#modal_update").css("display","inline");
+
 		},
 		dataType:'JSON',
 		success:function(data)
@@ -220,9 +210,7 @@ function delUserEducation() {
     			jQuery("#modal_update > #status").html("...deleting...");
     		},
     		complete:function(){
-    			jQuery("#modal_update").css("display","none");
-    			jQuery("#modal_update > #status").html("...page reloading...");
-    			jQuery("#modal_update").css("display","inline");
+
     		},
     		dataType:'JSON',
     		success:function(data)
@@ -260,9 +248,7 @@ function saveUserCRA(){
 			jQuery("#modal_update > #status").html("...saving...");
 		},
 		complete:function(){
-			jQuery("#modal_update").css("display","none");
-			jQuery("#modal_update > #status").html("...page reloading...");
-			jQuery("#modal_update").css("display","inline");
+
 		},
 		success:function(data)
 		{
@@ -312,9 +298,7 @@ function saveReference(){
 			jQuery("#modal_update > #status").html("...saving...");
 		},
 		complete:function(){
-			jQuery("#modal_update").css("display","none");
-			jQuery("#modal_update > #status").html("...page reloading...");
-			jQuery("#modal_update").css("display","inline");
+
 		},
 		success:function(data)
 		{
@@ -378,9 +362,7 @@ function delReference() {
     			jQuery("#modal_update > #status").html("...deleting...");
     		},
     		complete:function(){
-    			jQuery("#modal_update").css("display","none");
-    			jQuery("#modal_update > #status").html("...page reloading...");
-    			jQuery("#modal_update").css("display","inline");
+
     		},
     		success:function(data)
     		{
@@ -435,9 +417,7 @@ function saveUserMembership(){
 			jQuery("#modal_update > #status").html("...saving...");
 		},
 		complete:function(){
-			jQuery("#modal_update").css("display","none");
-			jQuery("#modal_update > #status").html("...page reloading...");
-			jQuery("#modal_update").css("display","inline");
+
 		},
 		success:function(data)
 		{
@@ -532,9 +512,7 @@ function delUserMembership() {
     			jQuery("#modal_update > #status").html("...deleting...");
     		},
     		complete:function(){
-    			jQuery("#modal_update").css("display","none");
-    			jQuery("#modal_update > #status").html("...page reloading...");
-    			jQuery("#modal_update").css("display","inline");
+
     		},
     		success:function(data)
     		{
@@ -618,9 +596,7 @@ function saveUserProfile(){
 			jQuery("#modal_update > #status").html("...saving...");
 		},
 		complete:function(){
-			jQuery("#modal_update").css("display","none");
-			jQuery("#modal_update > #status").html("...page reloading...");
-			jQuery("#modal_update").css("display","inline");
+
 		},
 		success:function(data)
 		{
@@ -668,7 +644,6 @@ function uploadPhoto(){
     
 
 	var file = _("upload_photo").files[0];
-    //alert(file.name+" | "+file.size+" | "+file.type);
     var formdata = new FormData();
     formdata.append("upload_photo", file);
     var ajax = new XMLHttpRequest();
@@ -730,6 +705,63 @@ function errorCVHandler(event){
 }
 function abortCVHandler(event){
     _("statuscv").innerHTML = "Upload Aborted";
+}
+
+function upload_file(){
+    
+	var userImage = {};
+	//jQuery("#upload_file_form :input").each(function(idx,ele){
+	//	userImage[jQuery(ele).attr('name')] = jQuery(ele).val();
+	//});
+	var formData = new FormData(jQuery("#upload_file_form")[0]);
+
+	jQuery.ajax({
+	     url: "index.php?option=com_ddcpss&controller=add&format=raw&tmpl=component",
+	     type: 'POST',
+	     data: formData,
+	     async: false,
+	     success: function (data) {
+	         alert(data)
+	     },
+	     cache: false,
+	     contentType: false,
+	     processData: false
+	 });
+
+	
+//	var userImage = {};
+//	jQuery("#upload_file_form :input").each(function(idx,ele){
+//		userImage[jQuery(ele).attr('name')] = jQuery(ele).val();
+//	});
+//	var file = _("file_upload").files[0];
+//    var formdata = new FormData();
+//    formdata.append("file_upload", file);
+//    var ajax = new XMLHttpRequest();
+//    ajax.upload.addEventListener("progress", progressFileHandler, false);
+//    ajax.addEventListener("load", completeFileHandler, false);
+//    ajax.addEventListener("error", errorFileHandler, false);
+//    ajax.addEventListener("abort", abortFileHandler, false);
+//    ajax.open("POST", "index.php?option=com_ddcpss&controller=add&format=raw&tmpl=component");
+//    ajax.send(formdata);
+//    ajax.send(userImage);
+}
+
+function progressFileHandler(event){
+    var percent = (event.loaded / event.total) * 100;
+    _("progressFileBar").value = Math.round(percent);
+    _("file_status").innerHTML = Math.round(percent)+"% uploaded... please wait";
+}
+function completeFileHandler(event){
+    _("file_status").innerHTML = "";
+    _("progressFileBar").value = 0;
+    jQuery("#uploadModal").modal('hide');
+    _("file_upload").value = "";
+}
+function errorFileHandler(event){
+    _("file_status").innerHTML = event.responseText;
+}
+function abortFileHandler(event){
+    _("file_status").innerHTML = "Upload Aborted";
 }
 
 function loadregform(){

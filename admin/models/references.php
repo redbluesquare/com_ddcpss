@@ -71,6 +71,14 @@ class DdcpssModelsReferences extends DdcpssModelsDefault
   protected function _buildWhere(&$query)
   {
 
+  	if($this->_published!=null)
+  	{
+  		//$query->where('ref.state = "'.(int)$this->_published.'"');
+  	}
+  	if($this->_user_id!=null)
+  	{
+  		$query->where('ref.user_id = "'.(int)$this->_user_id.'"');
+  	}
   	if($this->_reference_id!=null)
   	{
   		$query->where('ref.ddc_reference_id = "'.(int)$this->_reference_id.'"');

@@ -369,6 +369,78 @@ class DdcpssControllersAdd extends JControllerBase {
 			}
 			echo $return['html'];
 		}
+		else if($table=='user_images')
+		{
+			$user = JFactory::getUser()->username;
+			$modelName  = $app->input->get('models', 'profile');
+			$modelName  = 'DdcpssModels'.ucwords($modelName);
+			$model = new $modelName();
+			
+			$fileName = $_FILES["file_upload"]["name"];
+			$fileTmpLoc = $_FILES["file_upload"]["tmp_name"];
+			$fileType = $_FILES["file_upload"]["type"];
+			$fileSize = $_FILES["file_upload"]["size"];
+			$fileErrorMsg = $_FILES["file_upload"]["error"];
+			$ext = explode(".", $fileName);
+			$ext = $ext[1];
+			$fname = date("Ymdhhiiss").$user."_temp.".$ext;
+			$newName = date("Ymdhhiiss").$user.".".$ext;
+			$filepath = JPATH_ROOT."/media/ddcpss/docs/";
+			$filename = $newName;
+			
+			if(!$fileTmpLoc)
+			{
+				echo $return["html"] = "Error, please first select a file!";
+				exit();
+			}
+			else if($fileSize > 5242880)
+			{ // if file size is larger than 5 Megabytes
+			echo $return["html"] = "ERROR: Your file was larger than 5 Megabytes in size.";
+			unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
+			exit();
+			}
+			else if (!preg_match("/.(doc|pdf|docx|jpg|png|bmp|gif)$/i", $fileName) )
+			{
+				// This condition is only if you wish to allow uploading of specific file types
+				echo $return["html"] = "ERROR: Your file was not .jpg, .gif, .png, .bmp, .doc, .docx, or .pdf.";
+				unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
+				exit();
+			}
+			else if ($fileErrorMsg == 1)
+			{ // if file upload error key is equal to 1
+			echo $return["html"] = "ERROR: An error occured while processing the file. Try again.";
+			exit();
+			}
+			
+			// Place it into your "uploads" folder mow using the move_uploaded_file() function
+			$moveResult = move_uploaded_file($fileTmpLoc, $filepath.$filename);
+			// Check to make sure the move result is true before continuing
+			if ($moveResult != true)
+			{
+				echo $return['html'] = "ERROR: File not uploaded. Try again.";
+				unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
+				exit();
+			}
+			
+			$dataupload = array($data['category'], $filename, $filepath, $data['alias'], $data['linked_table'] = null, $data['linked_table_id'] = null);
+			//unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
+			if ( $row = $model->uploadFile($dataupload) )
+			{
+				$return['success'] = true;
+				$return['msg'] = JText::_('COM_DDC_SAVE_SUCCESS');
+				$return['html'] = JUri::root()."/media/ddcpss/docs/".$filename;
+			
+			}else{
+				$return['html'] = JText::_('COM_DDC_SAVE_FAILURE');
+			}
+			echo $return['html'];
+			
+			$return['table'] = $table;
+			
+			
+			echo json_encode($return);
+		}
+		
 	}
 		
 }
