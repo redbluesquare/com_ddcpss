@@ -104,6 +104,7 @@ else
 	<div class="clearfix"></div>
 	<div class="span12" style="margin-bottom:5px;">
 		<button id="mycv" class="btn btn-success pull-left" data-toggle="modal" data-target="#uploadCVModal"><i class="icon-file icon-white"></i><?php echo JText::_('COM_DDC_UPDATE_CV'); ?></button>
+		<a href="<?php echo JRoute::_('index.php?option=com_ddcpss&view=profiles&layout=documents')?>" class="btn btn-success pull-right"><i class="icon-file icon-white"></i><?php echo JText::_('COM_DDC_MANAGE_DOCUMENTS'); ?></a>
 	</div>
 	<div class="clearfix"></div>
 	<div class="span12 showbtns" style="margin-top:3px;">

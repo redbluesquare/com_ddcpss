@@ -719,9 +719,12 @@ function upload_file(){
 	     url: "index.php?option=com_ddcpss&controller=add&format=raw&tmpl=component",
 	     type: 'POST',
 	     data: formData,
+	     dataType:'JSON',
 	     async: false,
 	     success: function (data) {
-	         alert(data)
+	    	 jQuery("#uploadFileModal").modal('hide');
+	         alert(data.msg);
+	         console.log(data);
 	     },
 	     cache: false,
 	     contentType: false,
@@ -754,7 +757,7 @@ function progressFileHandler(event){
 function completeFileHandler(event){
     _("file_status").innerHTML = "";
     _("progressFileBar").value = 0;
-    jQuery("#uploadModal").modal('hide');
+    jQuery("#uploadFileModal").modal('hide');
     _("file_upload").value = "";
 }
 function errorFileHandler(event){

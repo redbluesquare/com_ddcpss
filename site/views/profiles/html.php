@@ -23,6 +23,7 @@ class DdcpssViewsProfilesHtml extends JViewHtml
     $usermemModel = new DdcpssModelsUsermembership();
     $usereduModel = new DdcpssModelsUsereducation();
     $usercraModel = new DdcpssModelsUsercra();
+    $userimageModel = new DdcpssModelsUserimages();
     $referencesModel = new DdcpssModelsReferences();
     $modelReference = new DdcpssModelsReference();
     $profModel = new UsersModelProfile();
@@ -48,6 +49,7 @@ class DdcpssViewsProfilesHtml extends JViewHtml
     	break;
     	case "documents":
     		$this->profile = $profileModel->getItem();
+    		$this->images = $userimageModel->listItems();
     	break;
     }
  

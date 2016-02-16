@@ -264,6 +264,9 @@ function getMe()
   	if($user!=0)
   	{
   		$date = date("Y-m-d H:i:s");
+  		if(!isset($data['category'])){$data['category']=null;}
+  		if(!isset($data['linked_table'])){$data['linked_table']=null;}
+  		if(!isset($data['linked_table_id'])){$data['linked_table_id']=null;}
   		$db = JFactory::getDbo();
   		$query = $db->getQuery(TRUE);
   		// Insert columns.
@@ -271,7 +274,7 @@ function getMe()
   
   		// Insert values.
   		$values = array($user, $db->quote($data['linked_table']), $db->quote($data['linked_table_id']), $db->quote($data['category']), 
-  				$db->quote($data['filepath']), $db->quote($data['filename']), $db->quote($data['alias']), 1, $date, $date);
+  				$db->quote($data['filepath']), $db->quote($data['filename']), $db->quote($data['alias']), 1, $db->quote($date), $db->quote($date));
   
   		// Prepare the insert query.
   		$query

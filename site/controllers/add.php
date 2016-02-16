@@ -386,6 +386,7 @@ class DdcpssControllersAdd extends JControllerBase {
 			$fname = date("Ymdhhiiss").$user."_temp.".$ext;
 			$newName = date("Ymdhhiiss").$user.".".$ext;
 			$filepath = JPATH_ROOT."/media/ddcpss/docs/";
+			$filepathuri = "media/ddcpss/docs/";
 			$filename = $newName;
 			
 			if(!$fileTmpLoc)
@@ -402,13 +403,17 @@ class DdcpssControllersAdd extends JControllerBase {
 			else if (!preg_match("/.(doc|pdf|docx|jpg|png|bmp|gif)$/i", $fileName) )
 			{
 				// This condition is only if you wish to allow uploading of specific file types
-				echo $return["html"] = "ERROR: Your file was not .jpg, .gif, .png, .bmp, .doc, .docx, or .pdf.";
+				$return['msg'] = "ERROR: Your file was not .jpg, .gif, .png, .bmp, .doc, .docx, or .pdf.";
+				$return['success'] = false;
+				echo json_encode($return);
 				unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
 				exit();
 			}
 			else if ($fileErrorMsg == 1)
 			{ // if file upload error key is equal to 1
-			echo $return["html"] = "ERROR: An error occured while processing the file. Try again.";
+				$return["msg"] = "ERROR: An error occured while processing the file. Try again.";
+				$return['success'] = false;
+				echo json_encode($return);			
 			exit();
 			}
 			
@@ -417,14 +422,17 @@ class DdcpssControllersAdd extends JControllerBase {
 			// Check to make sure the move result is true before continuing
 			if ($moveResult != true)
 			{
-				echo $return['html'] = "ERROR: File not uploaded. Try again.";
+				$return['msg'] = "ERROR: File not uploaded. Try again.";
+				$return['success'] = false;
+				echo json_encode($return);
+				
 				unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
 				exit();
 			}
-			
-			$dataupload = array($data['category'], $filename, $filepath, $data['alias'], $data['linked_table'] = null, $data['linked_table_id'] = null);
+			$data['filename'] = $filename;
+			$data['filepath'] = $filepathuri;
 			//unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
-			if ( $row = $model->uploadFile($dataupload) )
+			if ( $row = $model->uploadFile($data) )
 			{
 				$return['success'] = true;
 				$return['msg'] = JText::_('COM_DDC_SAVE_SUCCESS');
@@ -433,7 +441,6 @@ class DdcpssControllersAdd extends JControllerBase {
 			}else{
 				$return['html'] = JText::_('COM_DDC_SAVE_FAILURE');
 			}
-			echo $return['html'];
 			
 			$return['table'] = $table;
 			
