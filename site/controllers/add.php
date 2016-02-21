@@ -429,6 +429,10 @@ class DdcpssControllersAdd extends JControllerBase {
 				unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
 				exit();
 			}
+			if($data['alias']==null)
+			{
+				$data['alias'] = $fileName;
+			}
 			$data['filename'] = $filename;
 			$data['filepath'] = $filepathuri;
 			//unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
